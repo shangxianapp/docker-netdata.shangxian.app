@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  jenkins:
+    container_name: 'netdata'
+    image: 'titpetric/netdata'
+    volumes:
+      - '/proc:/host/proc:ro'
+      - '/sys:/host/sys:ro'
+    restart: always
+    ports:
+      - 19999:19999
+    hostname: sg02
+
+networks:
+  default:
+    external:
+      name: "${DOCKER_PRIVATE_NETWORK_NAME}"
